@@ -7,18 +7,16 @@ from PIL import Image
 from datetime import datetime
 
 # ---------------- 1. SETUP PATHS ----------------
-# လက်ရှိ file (app.py) ရှိတဲ့ folder ကို base အဖြစ်ယူမယ်
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def get_path(filename):
     return os.path.join(BASE_DIR, filename)
 
-# prediction_script ကို import လုပ်ခြင်း
 sys.path.append(BASE_DIR)
 try:
     from prediction_script import predict_paddy
 except ImportError:
-    st.error("prediction_script.py ကို ရှာမတွေ့ပါ။ ဖိုင်တည်နေရာကို ပြန်စစ်ပေးပါ။")
+    st.error("prediction_script.py ကို ရှာမတွေ့ပါ။")
 
 # ---------------- 2. VARIETY MAPPING ----------------
 VARIETY_MAPPING = {
@@ -35,22 +33,20 @@ VARIETY_MAPPING = {
     "default": "အထွေထွေ စပါးမျိုး"
 }
 
-# ---------------- 3. LOAD DATA ----------------
+# ---------------- 3. DATA LOADING ----------------
 def load_knowledge():
     path = get_path('knowledge.json')
-    if not os.path.exists(path):
-        st.error(f"ဖိုင်မတွေ့ပါ: {path}")
-        return {}
-    with open(path, 'r', encoding='utf-8') as f:
-        return json.load(f)
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except: return {}
 
 def load_shops():
     path = get_path('shops.json')
-    if not os.path.exists(path):
-        st.error(f"ဖိုင်မတွေ့ပါ: {path}")
-        return []
-    with open(path, 'r', encoding='utf-8') as f:
-        return json.load(f)
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except: return []
 
 # ---------------- 4. MAIN APP ----------------
 def main():
@@ -58,7 +54,6 @@ def main():
     shops_data = load_shops()
 
     st.set_page_config(page_title="Crop Care", layout="wide")
-    
     st.title("🌾 Crop Care (စပါးရောဂါ ရှာဖွေသူ)")
     st.write("---")
 
@@ -73,7 +68,6 @@ def main():
         img = Image.open(uploaded_file)
         col1, col2 = st.columns([1, 1], gap="large")
 
-        # Predict လုပ်ပြီးသား result ကို ခေတ္တသိမ်းထားရန်
         if 'last_res' not in st.session_state:
             st.session_state.last_res = None
 
@@ -94,7 +88,6 @@ def main():
                     except Exception as e:
                         st.error(f"Error: {e}")
 
-            # ရလဒ်များကို ပြသခြင်း
             if st.session_state.last_res:
                 info = st.session_state.last_res['info']
                 v_mm = VARIETY_MAPPING.get(st.session_state.last_res['variety'].lower().strip(), VARIETY_MAPPING["default"])
@@ -102,7 +95,6 @@ def main():
                 st.markdown(f"### **{info['name_mm']}**")
                 st.info(f"🌾 **မျိုးစိတ်:** {v_mm} | 📅 **သက်တမ်း:** {st.session_state.last_res['age']} ရက်")
                 st.write(f"**အကြောင်းရင်း:** {info['cause']}")
-                
                 st.warning(f"**အကြံပြုချက်:** \n\n {info['treatment']}")
 
         with col1:
@@ -111,7 +103,6 @@ def main():
             
             if st.session_state.last_res:
                 info = st.session_state.last_res['info']
-                # Case-insensitive check for chemical key
                 chem_list = info.get("chemical_treatment") or info.get("Chemical_treatment") or []
                 
                 if chem_list:
@@ -119,15 +110,20 @@ def main():
                     st.markdown("#### 🧪 အသုံးပြုနိုင်သော ဆေးများ")
                     st.success(", ".join(chem_list))
 
-                    # --- SHOP MATCHING LOGIC ---
+                    # --- IMPROVED SHOP MATCHING LOGIC ---
                     matched_shops = []
                     target_chems = [c.strip().lower() for c in chem_list]
                     
+                    # မြို့အမည်မှ "မြို့" ကို ဖယ်ပြီး အဓိက စာသားကို ယူခြင်း (ဥပမာ- "မန္တလေး")
+                    city_keyword = selected_city.replace("မြို့", "").strip()
+
                     for shop in shops_data:
-                        # မြို့အမည် တူမတူစစ် (Space ဖယ်ပြီးစစ်)
-                        if str(shop.get("city", "")).strip() == selected_city.strip():
+                        shop_city = str(shop.get("city", "")).strip()
+                        
+                        # မြို့အမည် တိုက်စစ်ခြင်း (ပိုမို ပျော့ပြောင်းသော matching)
+                        if city_keyword in shop_city or shop_city in selected_city:
                             shop_items = [str(i).strip().lower() for i in shop.get("sold_items", [])]
-                            # ဆေးတစ်မျိုးမျိုး ကိုက်ညီရင် ဆိုင်စာရင်းထဲထည့်
+                            
                             if any(tc in shop_items for tc in target_chems):
                                 matched_shops.append(shop)
 
@@ -139,7 +135,6 @@ def main():
                                 st.write(f"📞 {s['phone_number']}")
                     else:
                         st.warning(f"{selected_city} တွင် ဤရောဂါအတွက် ဆေးရနိုင်သောဆိုင် မတွေ့သေးပါ။")
-
     else:
         st.session_state.last_res = None
         st.info("ကျေးဇူးပြု၍ ပုံတင်ပေးပါ။")
