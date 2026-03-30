@@ -3,5 +3,5 @@ pandas
 plotly
 requests
 opencv-python-headless
-tensorflow-cpu==2.15.0
 streamlit-option-menu
+tensorflow==2.15.0

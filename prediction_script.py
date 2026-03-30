@@ -12,14 +12,17 @@ model_path   = "trained_model/paddy_doctor.keras"
 
 def load_model_and_encoder():
     if not os.path.exists(encoder_path): 
-        raise FileNotFoundError("Encoder not found")
+        raise FileNotFoundError(f"Encoder not found at {encoder_path}")
     if not os.path.exists(model_path): 
-        raise FileNotFoundError("Model not found")
+        raise FileNotFoundError(f"Model not found at {model_path}")
 
-    model = tf.keras.models.load_model(model_path)
+    model = tf.keras.models.load_model(model_path, compile=False)
+    
     with open(encoder_path, "rb") as f:
         encoders = pickle.load(f)
     return model, encoders
+
+model, encoders  = load_model_and_encoder()
 
 def predict_paddy(paddy_image):
     if isinstance(paddy_image, str):
@@ -37,7 +40,6 @@ def predict_paddy(paddy_image):
     img_array = tf.keras.applications.mobilenet_v2.preprocess_input(img_array)
     img_array = np.expand_dims(img_array, axis=0)
 
-    model, encoders  = load_model_and_encoder()
     predicted_result = model.predict(img_array)
     disease_idx      = np.argmax(predicted_result[0][0])
     variety_idx      = np.argmax(predicted_result[1][0])
