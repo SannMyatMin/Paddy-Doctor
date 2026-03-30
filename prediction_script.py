@@ -6,14 +6,13 @@ import numpy as np
 from PIL import Image
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image
+from sklearn.preprocessing import LabelEncoder # ဒါကို အပေါ်မှာ ကြိုတင် import လုပ်ထားပါ
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-if current_dir not in sys.path:
-    sys.path.append(current_dir)
-
-image_size   = 224
-encoder_path = "trained_model/encoders.pkl"
-model_path   = "trained_model/paddy_doctor.keras"
+# Absolute Path သတ်မှတ်ခြင်း
+image_size=224
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+encoder_path = os.path.join(BASE_DIR, "trained_model/encoders.pkl")
+model_path = os.path.join(BASE_DIR, "trained_model/paddy_doctor.keras")
 
 def load_model_and_encoder():
     if not os.path.exists(encoder_path): 
@@ -21,13 +20,15 @@ def load_model_and_encoder():
     if not os.path.exists(model_path): 
         raise FileNotFoundError(f"Model not found at {model_path}")
 
+    # Model Load (compile=False က version mismatch အတွက် အကောင်းဆုံးပါ)
     model = tf.keras.models.load_model(model_path, compile=False)
     
     with open(encoder_path, "rb") as f:
+        # Pickle Error ကို ကျော်လွှားရန်
         encoders = pickle.load(f)
     return model, encoders
 
-model, encoders  = load_model_and_encoder()
+model, encoders = load_model_and_encoder()
 
 def predict_paddy(paddy_image):
     if isinstance(paddy_image, str):

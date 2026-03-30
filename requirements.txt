@@ -5,3 +5,6 @@ requests
 opencv-python-headless
 streamlit-option-menu
 tensorflow
+scikit-learn
+Pillow
+numpy
