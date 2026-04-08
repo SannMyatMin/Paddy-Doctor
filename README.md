@@ -34,7 +34,7 @@ Visualizes disease outbreaks in the cities to help with regional prevention and 
 
 Real-time weather monitoring with AI alerts for irrigation and pesticide spraying schedules.
 
-<img src="imgs/weather.png" style="border: 2px solid #555; border-radius: 10px;">
+<img src="imgs/weather.png" style="border: 2px solid #000000; border-radius: 10px;">
 
 ## Tech Stack
 
