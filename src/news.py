@@ -25,6 +25,17 @@ def translate_weather(description):
     return weather_dict.get(description.lower(), description)
 
 def app():
+    st.markdown("""
+        <style>
+               .block-container {
+                    padding-top: 1rem;
+                    padding-bottom: 0rem;
+                    padding-left: 5rem;
+                    padding-right: 5rem;
+                }
+        </style>
+        """, unsafe_allow_html=True)
+
     st.title("📊 Agri Dashboard & News")
     st.write("---")
 
@@ -130,6 +141,6 @@ def app():
         st.info("📊 စာရင်းအချက်အလက်များ ပြသရန် Prediction Data (CSV) လိုအပ်နေပါသေးသည်။ စပါးရောဂါအရင် စစ်ဆေးပေးပါ။")
 
     st.write("---")
-    st.markdown("### 📢 စိုက်ပျိုးရေးဆိုင်ရာ အကြံပြုချက်များ")
-    st.write("- ရေသွင်းရေထုတ် စနစ်တကျ ပြုလုပ်ပါ။")
-    st.write("- မျိုးစေ့ကို စနစ်တကျ ရွေးချယ်ပါ။")
+    st.markdown("### 📢 Upcoming News")
+    st.write("-------")
+    st.write("-------")

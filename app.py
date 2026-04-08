@@ -1,21 +1,13 @@
-import os
-import sys
-root_path = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, root_path)
-
 import streamlit as st
 from streamlit_option_menu import option_menu
-
-# Folder နာမည် 'src' သို့ ပြောင်းထားသည်ဟု ယူဆပါသည်
 import src.home as home
 import src.CropCare as CropCare
 import src.marketplace as marketplace
 import src.news as news
 
-# Page Config (Main တစ်ခုတည်းမှာပဲ ရှိရပါမယ်)
-st.set_page_config(page_title="AgriSense AI", layout="wide", page_icon="🌾")
 
-# ---------------- SIDEBAR STYLE ----------------
+st.set_page_config(page_title="Crop Care AI", layout="wide", page_icon="🌾")
+
 st.markdown("""
 <style>
 section[data-testid="stSidebar"] { width: 220px !important; }
@@ -23,9 +15,8 @@ section[data-testid="stSidebar"] { width: 220px !important; }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- SIDEBAR MENU ----------------
 with st.sidebar:
-    st.markdown('<div class="sidebar-title">🌾 AgriSense AI</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sidebar-title">🌾 Crop Care AI</div>', unsafe_allow_html=True)
     
     main_menu = option_menu(
         menu_title=None,
@@ -38,7 +29,6 @@ with st.sidebar:
         }
     )
 
-# ---------------- PAGE ROUTING ----------------
 if main_menu == "Home":
     home.app()
 elif main_menu == "CropCare":

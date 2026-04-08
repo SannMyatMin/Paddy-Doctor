@@ -1,10 +1,21 @@
 import streamlit as st
 
 def app():
-    st.title("🌾 AgriSense AI")
+    st.markdown("""
+        <style>
+               .block-container {
+                    padding-top: 1rem;
+                    padding-bottom: 0rem;
+                    padding-left: 5rem;
+                    padding-right: 5rem;
+                }
+        </style>
+        """, unsafe_allow_html=True)
+
+    st.title("🌾 Crop Care AI")
     st.markdown("### Smart Farming Assistant 🇲🇲")
     st.write("""
-    AgriSense AI မှ ကြိုဆိုပါတယ်။ ဤ App သည် တောင်သူဦးကြီးများအတွက် AI နည်းပညာသုံး အကူအညီပေးမည့် Platform ဖြစ်ပါတယ်။
+    Crop Care AI မှ ကြိုဆိုပါတယ်။ ဤ App သည် တောင်သူဦးကြီးများအတွက် AI နည်းပညာသုံး အကူအညီပေးမည့် Platform ဖြစ်ပါတယ်။
     
     ### 🌟 ဝန်ဆောင်မှုများ
     - 🌾 **CropCare:** စပါးရောဂါများကို ဓာတ်ပုံရိုက်၍ စစ်ဆေးခြင်း။
