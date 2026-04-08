@@ -66,6 +66,6 @@ Crop Care AI doesn't just provide raw predictions; it delivers actionable insigh
 
 * **Curated Knowledge Base:** Instead of generic AI responses, the system uses a verified database of paddy diseases, causes, and treatments. This information is meticulously collected from real-life agricultural practices and widely used field methods in Myanmar.
 
-* **Dynamic Shop Mapping:** To make the solution truly convenient, we map the recommended treatments to a curated database of local agro-chemical shops. This bridges the gap between diagnosis and actual cure.
+* **Dynamic Shop Mapping:** To make the solution truly convenient, system map the recommended treatments to a curated database of local agro-chemical shops. This bridges the gap between diagnosis and actual cure.
 
 * **Localized Context:** By using these Knowledge-based expert systems, it ensures that every piece of advice is linguistically appropriate and culturally relevant to the local farming community.
