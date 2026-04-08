@@ -2,7 +2,8 @@
 
 **Crop Care AI** is an AI-powered platform designed to assist Myanmar farmers in identifying rice diseases, monitoring weather conditions, and accessing agricultural resources all in one place.
 
-![Result Image](imgs/home.png)
+|![Result Image](imgs/home.png)|
+| :---: |
 
 ## Features of the Platform
 
@@ -21,7 +22,7 @@ The heart of the system is designed for **maximum convenience**. Farmers no long
 
   |![Result Image](imgs/crop_care_2.png)|
   | :---: |
-  
+
   |![Result Image](imgs/crop_care_3.png)|
   | :---: |
 
