@@ -18,8 +18,10 @@ The heart of the system is designed for **maximum convenience**. Farmers no long
 
   |![Result Image](imgs/crop_care_1.png)|
   | :---: |
+
   |![Result Image](imgs/crop_care_2.png)|
   | :---: |
+  
   |![Result Image](imgs/crop_care_3.png)|
   | :---: |
 
