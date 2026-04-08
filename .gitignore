@@ -11,3 +11,7 @@ cropcare_model.py
 data_processor.py
 
 train_model.ipynb
+
+Knowledge.json
+Shops.json
+disease_data.csv
