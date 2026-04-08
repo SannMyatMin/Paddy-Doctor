@@ -78,7 +78,7 @@ def app():
     </style>
     """, unsafe_allow_html=True)
 
-    st.title("🌾 Crop Care (စပါးရောဂါ ရှာဖွေသူ)")
+    st.title("🌾 Crop Care AI (စပါးရောဂါ ရှာဖွေသူ)")
     st.markdown("အောက်ပါနေရာတွင် စပါးရွက်ပုံရိပ်ကို တင်၍ ရောဂါလက္ခဏာများကို စစ်ဆေးနိုင်ပါသည်။")
     st.write("---")
 
