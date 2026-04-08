@@ -16,9 +16,12 @@ The heart of the system is designed for **maximum convenience**. Farmers no long
 - **AI Analysis:** System instantly diagnoses the disease, explains the root cause, and provides a detailed treatment plan in Burmese.
 - **End-to-End Solution:** It doesn't just stop at a diagnosis—it recommends specific **usable drugs** and automatically finds **nearby agro-shops** in user's city that stock those exact items.
 
-  ![Result Image](imgs/crop_care_1.png)
-  ![Result Image](imgs/crop_care_2.png)
-  ![Result Image](imgs/crop_care_3.png)
+  |![Result Image](imgs/crop_care_1.png)|
+  | :---: |
+  |![Result Image](imgs/crop_care_2.png)|
+  | :---: |
+  |![Result Image](imgs/crop_care_3.png)|
+  | :---: |
 
 - **🛠️ Integrated Marketplace:** Automatically filters local shops based on the required chemical treatments.
 
