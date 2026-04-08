@@ -1,4 +1,3 @@
-
 import requests
 
 api_key = "f85efd938fa3d5894ffbc9af37cef8cb"

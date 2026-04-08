@@ -1,10 +1,10 @@
 streamlit
+streamlit-option-menu
 pandas
 plotly
+pillow
 requests
 opencv-python-headless
-streamlit-option-menu
 tensorflow
 scikit-learn
-Pillow
 numpy

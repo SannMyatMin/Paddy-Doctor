@@ -36,6 +36,18 @@ Real-time weather monitoring with AI alerts for irrigation and pesticide sprayin
 
 ![Result Image](imgs/weather.png)
 
-## Key Features
-
 ## Tech Stack
+
+### Multi-Output Deep Learning Model 🧠
+
+System utilizes a customized MobileNetV2 architecture, specifically designed for efficient performance on mobile and web platforms. Unlike standard models, Crop Care AI features a unique Multi-Task Learning head that can simultaneously predict three critical factors from a single image:
+
+- **Disease Classification:** Identifies the specific type of paddy disease with high precision using Softmax activation.
+
+- **Variety Recognition:** Detects the rice variety (e.g., ADT 45, Pusa) to provide more contextual farming advice.
+
+- **Crop Age Estimation:** Predicts the growth stage (in days) using a Linear regression output, helping farmers track crop maturity.
+
+- **Training Result**
+
+![Result Image](imgs/Training_History.png)
